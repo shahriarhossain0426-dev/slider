@@ -1,0 +1,2 @@
+# slider
+gallery management 
