@@ -1,0 +1,57 @@
+{
+"id": "com.slider.app",
+"name": "Slider - Smart Photo Sorter",
+"short_name": "Slider",
+"description": "Smart Photo Sorter and Gallery Manager to organize your photos with intuitive swipe gestures.",
+"start_url": "./index.html",
+"scope": "./",
+"display": "standalone",
+"display_override": [
+"window-controls-overlay",
+"standalone",
+"minimal-ui"
+],
+"orientation": "portrait",
+"background_color": "#121212",
+"theme_color": "#FFC801",
+"lang": "en",
+"dir": "ltr",
+"prefer_related_applications": false,
+"categories": [
+"photo",
+"utilities",
+"productivity"
+],
+"icons": [
+{
+"src": "https://raw.githubusercontent.com/feathericons/feather/master/icons/image.svg",
+"sizes": "192x192 512x512",
+"type": "image/svg+xml",
+"purpose": "any maskable"
+}
+],
+"shortcuts": [
+{
+"name": "Open Trash",
+"short_name": "Trash",
+"description": "View and restore deleted photos",
+"url": "./#trash"
+}
+],
+"launch_handler": {
+"client_mode": "focus-existing"
+},
+"file_handlers": [
+{
+"action": "./",
+"accept": {
+"image/*": [
+".jpg",
+".jpeg",
+".png",
+".webp"
+]
+}
+}
+]
+}
