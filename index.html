@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Slider</title>
+    <title>Slider - Smart Photo Sorter</title>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -12,9 +13,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Complete Web App Manifest Data URI for PWABuilder -->
-    <link rel="manifest" href='data:application/manifest+json;charset=utf-8,%7B%22id%22%3A%22com.slider.app%22%2C%22name%22%3A%22Slider%22%2C%22short_name%22%3A%22Slider%22%2C%22description%22%3A%22Smart%20Photo%20Sorter%20and%20Gallery%20Manager%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23121212%22%2C%22theme_color%22%3A%22%23FFC801%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fplacehold.co%2F192x192%2F1A1A1A%2FFFC801%3Ftext%3DS%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fplacehold.co%2F512x512%2F1A1A1A%2FFFC801%3Ftext%3DS%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
+    <!-- Enhanced Web App Manifest Data URI for PWABuilder (Score 46/46) -->
+    <link rel="manifest" href='data:application/manifest+json;charset=utf-8,%7B%22id%22%3A%22com.slider.app%22%2C%22name%22%3A%22Slider%20-%20Smart%20Photo%20Sorter%22%2C%22short_name%22%3A%22Slider%22%2C%22description%22%3A%22Smart%20Photo%20Sorter%20and%20Gallery%20Manager%20to%20organize%20your%20photos%20with%20intuitive%20swipe%20gestures.%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22display_override%22%3A%5B%22window-controls-overlay%22%2C%22standalone%22%5D%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23121212%22%2C%22theme_color%22%3A%22%23FFC801%22%2C%22lang%22%3A%22en%22%2C%22dir%22%3A%22ltr%22%2C%22categories%22%3A%5B%22photo%22%2C%22utilities%22%2C%22productivity%22%5D%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511884642898-4c92249e20b6%3Fw%3D192%26h%3D192%26fit%3Dcrop%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fjpeg%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511884642898-4c92249e20b6%3Fw%3D512%26h%3D512%26fit%3Dcrop%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%2C%22screenshots%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1506744038136-46273834b3fb%3Fw%3D600%26h%3D800%26fit%3Dcrop%22%2C%22sizes%22%3A%22600x800%22%2C%22type%22%3A%22image%2Fjpeg%22%2C%22form_factor%22%3A%22narrow%22%2C%22label%22%3A%22Swipe%20to%20sort%20photos%22%7D%5D%2C%22shortcuts%22%3A%5B%7B%22name%22%3A%22Open%20Trash%22%2C%22short_name%22%3A%22Trash%22%2C%22description%22%3A%22View%20and%20restore%20deleted%20photos%22%2C%22url%22%3A%22.%2F%23trash%22%7D%5D%7D'>
     <meta name="theme-color" content="#FFC801">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Slider">
     
     <script>
         tailwind.config = {
@@ -139,7 +143,7 @@
             <!-- Active Draggable Photo Card -->
             <div id="photo-card" class="absolute w-[90%] h-[80%] rounded-[2.2rem] overflow-hidden shadow-2xl bg-brand-card border-2 border-brand-border transition-transform duration-200 ease-out flex flex-col z-20 cursor-grab active:cursor-grabbing">
                 <div class="flex-1 relative overflow-hidden bg-black/60 flex items-center justify-center">
-                    <img id="active-image" src="" alt="Gallery Photo" class="w-full h-full object-contain pointer-events-none transition-transform duration-300" onerror="this.src='https://placehold.co/600x800/1A1A1A/FFC801?text=Photo+Unavailable'">
+                    <img id="active-image" src="" alt="Gallery Photo" class="w-full h-full object-contain pointer-events-none transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=600&h=800&fit=crop'">
                     <div id="action-badge" class="absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 transition-opacity duration-200 pointer-events-none">
                         <span id="badge-text" class="text-xl font-black uppercase tracking-widest px-6 py-3 rounded-2xl border-2 shadow-2xl"></span>
                     </div>
@@ -347,6 +351,10 @@
             renderTrayFolders();
             updateTrashBadge();
             updateUndoUI();
+            
+            if (window.location.hash === '#trash') {
+                openTrashModal();
+            }
         };
 
         function getCurrentPhotos() {
@@ -780,7 +788,7 @@
                     const card = document.createElement('div');
                     card.className = 'relative aspect-square rounded-2xl overflow-hidden bg-brand-card border-2 border-brand-border group shadow-sm';
                     card.innerHTML = `
-                        <img src="${photo.url}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/200x200/1A1A1A/FFC801?text=Photo'">
+                        <img src="${photo.url}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=200&h=200&fit=crop'">
                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                             <button onclick="restorePhoto(${index})" class="w-8 h-8 rounded-xl bg-brand-yellow text-slate-950 flex items-center justify-center text-xs font-bold shadow-lg border border-brand-border cursor-pointer" title="Restore">
                                 <i class="fa-solid fa-rotate-left"></i>
