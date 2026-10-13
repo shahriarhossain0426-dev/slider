@@ -12,6 +12,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Complete Web App Manifest Data URI for PWABuilder -->
+    <link rel="manifest" href='data:application/manifest+json;charset=utf-8,%7B%22id%22%3A%22com.slider.app%22%2C%22name%22%3A%22Slider%22%2C%22short_name%22%3A%22Slider%22%2C%22description%22%3A%22Smart%20Photo%20Sorter%20and%20Gallery%20Manager%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23121212%22%2C%22theme_color%22%3A%22%23FFC801%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fplacehold.co%2F192x192%2F1A1A1A%2FFFC801%3Ftext%3DS%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fplacehold.co%2F512x512%2F1A1A1A%2FFFC801%3Ftext%3DS%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
+    <meta name="theme-color" content="#FFC801">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -259,6 +263,22 @@
         </div>
         <button id="toast-undo-btn" onclick="undoLastAction()" class="bg-brand-yellow/20 hover:bg-brand-yellow/30 text-brand-yellow px-2.5 py-1 rounded-lg text-[10px] font-black border border-brand-yellow/30 uppercase tracking-wider hidden pointer-events-auto cursor-pointer">Undo</button>
     </div>
+
+    <!-- Embedded Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                self.addEventListener('install', e => self.skipWaiting());
+                self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+                self.addEventListener('fetch', e => {
+                    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+                });
+            `;
+            const blob = new Blob([swCode], { type: 'text/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(swUrl).catch(err => console.log('SW Registration bypassed:', err));
+        }
+    </script>
 
     <script>
         // Application Data State
